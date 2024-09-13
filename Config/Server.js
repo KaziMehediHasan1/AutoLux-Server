@@ -1,4 +1,4 @@
-const app = require("./app");
+const app = require("../EntryPoint/app");
 
 const PORT = process.env.SERVER_PORT || 8000;
 
