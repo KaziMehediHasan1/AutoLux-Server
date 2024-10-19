@@ -1,4 +1,4 @@
-const app = require("../EntryPoint/app");
+const {server,app} = require("../EntryPoint/app");
 
 const PORT = process.env.SERVER_PORT || 8000;
 
@@ -8,6 +8,6 @@ app.get('/test',(req,res)=>{
   })
   // console.log('api is running on port!');
 })
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`server running on port http://localhost:${PORT}`);
 });

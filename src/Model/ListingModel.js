@@ -61,11 +61,11 @@ const ListingDetail = new mongoose.Schema({
   },
   door: {
     type: String,
-    enum: [2, 3, 4, 5, 6],
+    // enum: [2, 3, 4, 5, 6],
   },
   vin: {
     type: String,
-    required: true,
+    // required: true,
   },
   price: {
     type: String,
@@ -73,21 +73,19 @@ const ListingDetail = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: true,
   },
   carFeature: {
-    type: Array,
+    type: [String],
     required: true,
   },
   carImage: {
-    type: String,
+    type: [String],
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
+  user: {
+    type: String,
+    required: true,
   },
 });
 

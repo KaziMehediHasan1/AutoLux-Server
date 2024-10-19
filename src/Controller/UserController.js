@@ -2,7 +2,6 @@ const users = require("../Model/UserModel");
 // create user..
 createUsers = async (req, res) => {
   const { FirstName, LastName, Email, Photo, Password } = req.body;
-  // console.log(req.body, "8no line");
   try {
     const newUser = new users({
       FirstName,
