@@ -1,21 +1,21 @@
-const socketHandler = (io) => {
-  let users = [{}];
+// const socketHandler = (io) => {
+//   let users = [{}];
 
-  io.on("connection", (socket) => {
-    console.log(`New connection: ${socket.id}`);
-    // sending message to the client
-    socket.emit('welcome',"welcome to the server");
+  // io.on("connection", (socket) => {
+  //   console.log(`New connection: ${socket.id}`);
+  //   // sending message to the client
+  //   socket.emit('welcome',"welcome to the server");
 
     // listening for message from client..
-    socket.on("message",(data)=>{
-      console.log("message",data);
-      io.emit("message",data);
-    });
+    // socket.on("message",(data)=>{
+    //   console.log("message",data);
+    //   io.emit("message",data);
+    // });
 
     // disconnect event
-    socket.on("disconnect",()=>{
-      console.log("client disconnected");
-    })
+    // socket.on("disconnect",()=>{
+    //   console.log("client disconnected");
+    // })
 
     // Add user to online users list
     // onlineUsers.push(socket.id);
@@ -46,7 +46,7 @@ const socketHandler = (io) => {
     //   onlineUsers = onlineUsers.filter((user) => user !== socket.id);
     //   io.emit("updateUser", onlineUsers);
     // });
-  });
-};
+//   });
+// };
 
-module.exports = socketHandler;
+// module.exports = socketHandler;

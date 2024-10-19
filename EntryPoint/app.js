@@ -3,8 +3,8 @@ const ConnectDB = require("../Config/db");
 require("dotenv").config();
 const app = express();
 const jwt = require("jsonwebtoken");
-const { Server } = require("socket.io");
-const http = require("http");
+// const { Server } = require("socket.io");
+// const http = require("http");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const morgan = require("morgan");
 const cors = require("cors");
@@ -17,7 +17,7 @@ const cartRoute = require("../src/Routes/CartRoute");
 const payment = require("../src/Routes/PaymentRoute");
 const Mail = require("../src/Routes/EmailRoute");
 const review = require("../src/Routes/ReviewRoute");
-const socketHandler = require("../Socket/Socket");
+// const socketHandler = require("../Socket/Socket");
 const bodyParser = require("body-parser");
 // connect to mongodb
 ConnectDB();
@@ -28,16 +28,16 @@ app.use(morgan("dev"));
 app.use(cors());
 
 // socket.io..
-const server = http.createServer(app);
-// initialize socket.io
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
-});
-socketHandler(io);
+// const server = http.createServer(app);
+// // initialize socket.io
+// const io = new Server(server, {
+//   cors: {
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
+// socketHandler(io);
 
 // jwt token..
 app.post("/jwt", async (req, res) => {
@@ -134,4 +134,4 @@ app.use("/", Mail);
 app.use("/", review);
 // app.use("/", membership)
 
-module.exports = { app, server };
+module.exports = app ;
