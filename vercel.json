@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "EntryPoint/app.js",
+      "src": "/EntryPoint/app.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "EntryPoint/app.js",
+      "dest": "/EntryPoint/app.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
   ]

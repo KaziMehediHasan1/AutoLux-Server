@@ -1,5 +1,4 @@
-const users = require("../Model/UserModel");
-// create user..
+const users = require("../Controller/UserController");
 createUsers = async (req, res) => {
   const { FirstName, LastName, Email, Photo, Password } = req.body;
   try {
@@ -12,7 +11,7 @@ createUsers = async (req, res) => {
     });
     const savedUser = await newUser.save();
     res.status(200).json(savedUser);
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ error: "Failed to create user" });
   }
 };

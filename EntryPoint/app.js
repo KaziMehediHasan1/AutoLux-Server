@@ -3,8 +3,6 @@ const ConnectDB = require("../Config/db");
 require("dotenv").config();
 const app = express();
 const jwt = require("jsonwebtoken");
-// const { Server } = require("socket.io");
-// const http = require("http");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const morgan = require("morgan");
 const cors = require("cors");
@@ -17,7 +15,6 @@ const cartRoute = require("../src/Routes/CartRoute");
 const payment = require("../src/Routes/PaymentRoute");
 const Mail = require("../src/Routes/EmailRoute");
 const review = require("../src/Routes/ReviewRoute");
-// const socketHandler = require("../Socket/Socket");
 const bodyParser = require("body-parser");
 // connect to mongodb
 ConnectDB();
@@ -27,26 +24,13 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 
-// socket.io..
-// const server = http.createServer(app);
-// // initialize socket.io
-// const io = new Server(server, {
-//   cors: {
-//     origin: "http://localhost:5173",
-//     methods: ["GET", "POST"],
-//     credentials: true,
-//   },
-// });
-// socketHandler(io);
 
 // jwt token..
 app.post("/jwt", async (req, res) => {
   const user = req.body;
-  // console.log("user for token", user);
   const token = jwt.sign(user, process.env.JWT_SECRET_TOKEN, {
     expiresIn: "1h",
   });
-  // console.log('get token from jwt', token);
   res.json({ token });
 });
 
@@ -83,7 +67,7 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 
 // Stripe Webhook to handle events
-const endpointSecret =process.env.ENDPOINT_SECRET;
+const endpointSecret = process.env.ENDPOINT_SECRET;
 app.post(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),
@@ -117,8 +101,7 @@ app.get("/checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     res.status(200).json(session);
   } catch (error) {
-    console.error("Error fetching session details:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -132,6 +115,5 @@ app.use("/", cartRoute);
 app.use("/", payment);
 app.use("/", Mail);
 app.use("/", review);
-// app.use("/", membership)
 
-module.exports = app ;
+module.exports = app;
