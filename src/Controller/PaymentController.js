@@ -2,7 +2,7 @@ const PaymentSchema = require("../Model/PaymentModel");
 const CartSchema = require("../Model/CartModel");
 const mongoose = require("mongoose");
 // create payment..
-paymentData = async (req, res) => {
+const paymentData = async (req, res) => {
   try {
     const data = req.body;
     console.log(data, "Incoming payment data"); // Log the payment data

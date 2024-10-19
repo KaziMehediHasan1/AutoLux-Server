@@ -1,6 +1,6 @@
 const BlogModel = require("../Model/BlogModel");
 // read a blog
-createBlogs = async (req, res) => {
+const createBlogs = async (req, res) => {
   const allBlogs = req.body;
   //   console.log(allBlogs, "4 no line ");
   try {
@@ -13,7 +13,7 @@ createBlogs = async (req, res) => {
 };
 
 // read blogs..
-readBlogs = async (req, res) => {
+const readBlogs = async (req, res) => {
   try {
     const getBlog = await BlogModel.find();
     res.status(200).json(getBlog);
@@ -22,7 +22,7 @@ readBlogs = async (req, res) => {
   }
 };
 // pagination route...
-paginateAndSearchBlog = async (req, res) => {
+const paginateAndSearchBlog = async (req, res) => {
   try {
     const search = req.query.search || "";
     const page = req.query.page || 1;
@@ -49,7 +49,7 @@ paginateAndSearchBlog = async (req, res) => {
   }
 };
 // delete one
-deleteOneBlog = async (req, res) => {
+const deleteOneBlog = async (req, res) => {
   const id = req.params.id;
   try {
     const deleteBlog = await BlogModel.findByIdAndDelete(id);
@@ -63,7 +63,7 @@ deleteOneBlog = async (req, res) => {
   }
 };
 
-DashBlog = async (req, res) => {
+const DashBlog = async (req, res) => {
   try {
     const page = req.query.page || 1;
     const limit = req.query.limit || 5;
@@ -81,7 +81,7 @@ DashBlog = async (req, res) => {
   }
 };
 // update a blog
-findByIdAndUpdate = async (req, res) => {
+const findByIdAndUpdate = async (req, res) => {
   const id = req.params.id;
   const updateData = req.body;
 

@@ -22,8 +22,9 @@ ConnectDB();
 // middleware..
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
-
+app.use(
+  cors()
+);
 
 // jwt token..
 app.post("/jwt", async (req, res) => {
@@ -56,8 +57,8 @@ app.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `http://localhost:5173/cart?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `http://localhost:5173/cancel`,
+      success_url: `${process.env.SERVER_PORT}/cart?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.SERVER_PORT}/cancel`,
     });
     res.status(200).json({ id: session.id });
   } catch (error) {
@@ -104,6 +105,7 @@ app.get("/checkout-session", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 // Routes.
 app.use("/", userRoutes);

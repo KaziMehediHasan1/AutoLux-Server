@@ -1,6 +1,6 @@
 const CartModel = require("../Model/CartModel");
 // create a cart data..
-postProductDataInCart = async (req, res) => {
+const postProductDataInCart = async (req, res) => {
   const data = req.body;
   try {
     const saveData = new CartModel({ ...data });
@@ -10,7 +10,7 @@ postProductDataInCart = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-getCartData = async (req, res) => {
+const getCartData = async (req, res) => {
   try {
     const getData = await CartModel.find();
     res.status(200).json(getData);
@@ -19,7 +19,7 @@ getCartData = async (req, res) => {
   }
 };
 // findOneByIdAndDeleteOne..
-cartDataDelete = async (req, res) => {
+const cartDataDelete = async (req, res) => {
   const id = req.params.id;
   console.log(id);
   try {
@@ -36,7 +36,7 @@ cartDataDelete = async (req, res) => {
   }
 };
 // findByMail and delete existing all data..
-findByMailAndDelete = async (req, res) => {
+const findByMailAndDelete = async (req, res) => {
   try {
     // const mail = req.query.user;
     // console.log(mail);

@@ -1,5 +1,5 @@
 const mailModel = require("../Model/EmailModel");
-createMailData = async (req, res) => {
+const createMailData = async (req, res) => {
   const data = req.body;
   console.log("4", data);
   try {

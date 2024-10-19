@@ -1,6 +1,6 @@
 const ListingDetail = require("../Model/ListingModel");
 // create a listing..
-createListing = async (req, res) => {
+const createListing = async (req, res) => {
   const ListData = req.body;
   try {
     const newListing = new ListingDetail({ ...ListData });
@@ -12,7 +12,7 @@ createListing = async (req, res) => {
   }
 };
 // read listing..
-readListing = async (req, res) => {
+const readListing = async (req, res) => {
   try {
     const getListing = await ListingDetail.find();
     res.status(200).json(getListing);
@@ -21,7 +21,7 @@ readListing = async (req, res) => {
   }
 };
 // pagination and filtering
-paginationAndFiltering = async (req, res) => {
+const paginationAndFiltering = async (req, res) => {
   try {
     const condition = req.query.condition;
     const make = req.query.make;
@@ -52,7 +52,7 @@ paginationAndFiltering = async (req, res) => {
   }
 };
 
-DashBoardListingDeleteById = async (req, res) => {
+const DashBoardListingDeleteById = async (req, res) => {
   try {
     const id = req.params.id;
     // console.log(id,"checking for ids");
@@ -67,7 +67,7 @@ DashBoardListingDeleteById = async (req, res) => {
   }
 };
 
-DashBardListingGet = async (req, res) => {
+const DashBardListingGet = async (req, res) => {
   try {
     const limit = req.query.limit || 5;
     const page = req.query.page || 1;

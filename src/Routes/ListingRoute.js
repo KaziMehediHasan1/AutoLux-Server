@@ -6,7 +6,6 @@ const {
   DashBoardListingDeleteById,
   DashBardListingGet,
 } = require("../Controller/ListingController");
-// const authMiddleware = require("../Middleware/authMiddleware");
 const route = express.Router();
 // crud operation..
 route.post("/listingDetail", createListing);

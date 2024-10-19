@@ -1,6 +1,6 @@
 const ProductSchema = require("../Model/ProductModel");
 // create data..
-createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     const productData = req.body;
     const productAdd = new ProductSchema({ ...productData });
@@ -10,7 +10,7 @@ createProduct = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-readProduct = async (req, res) => {
+const readProduct = async (req, res) => {
   try {
     const getProduct = await ProductSchema.find();
     res.status(200).json(getProduct);
@@ -19,7 +19,7 @@ readProduct = async (req, res) => {
   }
 };
 // pagination and filtering
-getProductPaginate = async (req, res) => {
+const getProductPaginate = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 8;
@@ -39,7 +39,7 @@ getProductPaginate = async (req, res) => {
   }
 };
 
-dashBoardProductDeleteById = async (req, res) => {
+const dashBoardProductDeleteById = async (req, res) => {
   try {
     const id = req.params.id;
     // console.log(id,"checking for ids");

@@ -1,5 +1,5 @@
 const users = require("../Controller/UserController");
-createUsers = async (req, res) => {
+const createUsers = async (req, res) => {
   const { FirstName, LastName, Email, Photo, Password } = req.body;
   try {
     const newUser = new users({
@@ -16,7 +16,7 @@ createUsers = async (req, res) => {
   }
 };
 
-readUsers = async (req, res) => {
+const readUsers = async (req, res) => {
   try {
     const getUsers = await users.find();
     res.status(200).json(getUsers);

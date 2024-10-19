@@ -1,6 +1,6 @@
 const SubscriptionPlan = require("./models/SubscriptionPlan");
 
-getMemberShipCard = async (req, res) => {
+const getMemberShipCard = async (req, res) => {
   try {
     const getSub = await SubscriptionPlan.find();
     res.status(200).json(getSub);

@@ -1,6 +1,6 @@
 const reviewModel = require("../Model/ReviewModel");
 // post review..
-postReview = async (req, res) => {
+const postReview = async (req, res) => {
   const review = req.body;
   console.log(review, "5 no line");
   try {
@@ -12,7 +12,7 @@ postReview = async (req, res) => {
   }
 };
 
-getAllReview = async (req, res) => {
+const getAllReview = async (req, res) => {
   try {
     const findActualData = await reviewModel.find();
     res.status(200).json(findActualData);
@@ -21,7 +21,7 @@ getAllReview = async (req, res) => {
   }
 };
 
-findByIdAndDeleteOne = async (req, res) => {
+const findByIdAndDeleteOne = async (req, res) => {
   const id = req.params.id;
   console.log(id, "asche");
   try {
@@ -36,7 +36,7 @@ findByIdAndDeleteOne = async (req, res) => {
   }
 };
 
-findOneAndUpdate = async (req, res) => {
+const findOneAndUpdate = async (req, res) => {
   const { id, value } = req.query;
   console.log(id, value, "got it");
   try {

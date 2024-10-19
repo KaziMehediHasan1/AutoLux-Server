@@ -1,6 +1,6 @@
 const Bookmark = require("../Model/BookmarkListingModel");
 
-Bookmarked = async (req, res) => {
+const Bookmarked = async (req, res) => {
   try {
     const id = req.params.id;
     const { person } = req.body;
@@ -31,7 +31,7 @@ Bookmarked = async (req, res) => {
   }
 };
 
-getBookmarked = async (req, res) => {
+const getBookmarked = async (req, res) => {
   try {
     const findBookmarkedUser = await Bookmark.find();
     res.status(200).json(findBookmarkedUser);
