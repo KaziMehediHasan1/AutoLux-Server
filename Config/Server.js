@@ -1,6 +1,6 @@
 const app = require("../EntryPoint/app");
 require("dotenv").config();
-const PORT = process.env.SERVER_PORT || 5000;
+const PORT = process.env.SERVER_PORT||500;
 
 app.get("/", (req, res) => {
   res.status(200).send({

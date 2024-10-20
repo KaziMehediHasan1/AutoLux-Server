@@ -22,8 +22,13 @@ ConnectDB();
 // middleware..
 app.use(express.json());
 app.use(morgan("dev"));
+
 app.use(
-  cors()
+  cors({
+    origin: ["https://autolux-one.netlify.app", "http://localhost:5173"],
+    methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
+    credentials: true,
+  })
 );
 
 // jwt token..
@@ -57,8 +62,8 @@ app.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `${process.env.SERVER_PORT}/cart?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.SERVER_PORT}/cancel`,
+      success_url: `${process.env.CHECKOUT_PORT}/cart?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.CHECKOUT_PORT}/cancel`,
     });
     res.status(200).json({ id: session.id });
   } catch (error) {
@@ -76,6 +81,7 @@ app.post(
     const sig = req.headers["stripe-signature"];
     let event;
 
+    console.log("webhooks", req.body);
     try {
       event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
     } catch (err) {
@@ -105,7 +111,6 @@ app.get("/checkout-session", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 
 // Routes.
 app.use("/", userRoutes);
